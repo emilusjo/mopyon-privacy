@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mòpyon - Five in a Row</title>
+<meta name="description" content="Five in a row, on a notebook page. The paper-and-pencil game, free on the App Store.">
+<style>
+  :root { color-scheme: light dark; --gold: #f2b134; }
+  * { box-sizing: border-box; }
+  body { font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+         max-width: 34rem; margin: 0 auto; padding: 1.5rem 1rem 2.5rem; text-align: center; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 2px 10px #0004; }
+  h1 { font-size: 2rem; margin: .8rem 0 .1rem; }
+  .sub { font-size: 1.15rem; margin: 0 0 1.2rem; opacity: .8; }
+  p { margin: .8rem 0; }
+  .button { display: inline-block; margin: 1rem 0 .4rem; padding: .85rem 1.6rem; border-radius: 999px;
+            background: var(--gold); color: #1b1305; font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+  .note { font-size: .9rem; opacity: .7; margin-top: .2rem; }
+  .shots { display: flex; gap: .6rem; justify-content: center; margin: 1.6rem 0 1rem; }
+  .shots img { width: 31%; max-width: 160px; height: auto; border-radius: 14px; box-shadow: 0 2px 8px #0004; }
+  footer { margin-top: 2rem; font-size: .9rem; opacity: .75; }
+  footer a { margin: 0 .5rem; }
+  body [lang="ht"] { display: none; }
+  body.ht [lang="en"] { display: none; }
+  body.ht [lang="ht"] { display: block; }
+  body.ht a.button[lang="ht"] { display: inline-block; }
+</style>
+</head>
+<body>
+<img class="icon" src="get/icon.png" alt="Mòpyon app icon" width="96" height="96">
+<h1>Mòpyon</h1>
+
+<p class="sub" lang="en">Five in a row, on a notebook page.</p>
+<p class="sub" lang="ht">Senk nan yon ranje, sou yon paj kaye.</p>
+
+<p lang="en">The paper-and-pencil game from the back of the class. Get five of your marks in a row before the computer
+does: across, down or diagonally. 240 levels, a new sketched place on every page, and your own radio with
+Compas, Gospel, Hip-Hop and R&amp;B.</p>
+<p lang="ht">Mòpyon se yon jwèt nou jwe nan kaye ak 2 koulè plim, sitou nan klas lekòl. Pou ou genyen, fè 5 nan yon
+ranje: vètikal, orizontal oubyen dyagonal. Jwe mòpyon pou'w kò'w oubyen envite yon zanmi jwe ave'w epi tande
+anpil bel mizik pandan jwe.</p>
+
+<a id="store" class="button" lang="en"
+   href="https://apps.apple.com/app/apple-store/id6821223115?pt=129592044&amp;ct=website&amp;mt=8">Get it on the App Store</a>
+<a id="store-ht" class="button" lang="ht"
+   href="https://apps.apple.com/app/apple-store/id6821223115?pt=129592044&amp;ct=website&amp;mt=8">Telechaje l sou App Store</a>
+<p class="note" lang="en">Free to play. No ads. One optional purchase (Mòpyon Plus). For iPhone and iPad.</p>
+<p class="note" lang="ht">Gratis. Pa gen piblisite. Gen yon sèl acha opsyonèl (Mòpyon Plus). Pou iPhone ak iPad.</p>
+
+<div class="shots">
+  <img src="get/match.jpg" alt="A match on a notebook page" width="420" height="913">
+  <img src="get/journey.jpg" alt="The Journey of levels" width="420" height="913">
+  <img src="get/radio.jpg" alt="Mòpyon Radio" width="420" height="913">
+</div>
+
+<footer>
+  <a href="/">Privacy policy</a> · <a href="support.html">Support</a>
+</footer>
+
+<script>
+  // The campaign name in the address (?src=meta-haitian) goes into the App Store link, so the App Store
+  // can count downloads per ad. Nothing is stored and nothing is sent anywhere else.
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var src = (q.get('src') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 40);
+    var lang = (q.get('lang') || '').toLowerCase();
+    if (lang === 'ht' || (!lang && src.indexOf('haitian') !== -1)) {
+      document.body.classList.add('ht');
+      document.documentElement.lang = 'ht';
+    }
+    if (src) {
+      ['store', 'store-ht'].forEach(function (id) {
+        var a = document.getElementById(id);
+        a.href = a.href.replace('ct=website', 'ct=' + src);
+      });
+    }
+  })();
+</script>
+</body>
+</html>
