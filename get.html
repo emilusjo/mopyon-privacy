@@ -20,6 +20,7 @@
   .note { font-size: .9rem; opacity: .7; margin-top: .2rem; }
   .shots { display: flex; gap: .6rem; justify-content: center; margin: 1.6rem 0 1rem; }
   .shots img { width: 31%; max-width: 160px; height: auto; border-radius: 14px; box-shadow: 0 2px 8px #0004; }
+  .switch { text-align: right; font-size: .95rem; margin: 0 0 .5rem; }
   footer { margin-top: 2rem; font-size: .9rem; opacity: .75; }
   footer a { margin: 0 .5rem; }
   body [lang="ht"] { display: none; }
@@ -29,6 +30,7 @@
 </style>
 </head>
 <body>
+<p class="switch"><a id="switch" href="?lang=ht">Kreyòl</a></p>
 <img class="icon" src="get/icon.png" alt="Mòpyon app icon" width="96" height="96">
 <h1>Mòpyon</h1>
 
@@ -66,10 +68,15 @@ anpil bel mizik pandan jwe.</p>
     var q = new URLSearchParams(location.search);
     var src = (q.get('src') || '').toLowerCase().replace(/[^a-z0-9-]/g, '').slice(0, 40);
     var lang = (q.get('lang') || '').toLowerCase();
-    if (lang === 'ht' || (!lang && src.indexOf('haitian') !== -1)) {
+    var ht = lang === 'ht' || (!lang && src.indexOf('haitian') !== -1);
+    if (ht) {
       document.body.classList.add('ht');
       document.documentElement.lang = 'ht';
     }
+    // The link in the corner switches the language and keeps the campaign name.
+    var sw = document.getElementById('switch');
+    sw.textContent = ht ? 'English' : 'Kreyòl';
+    sw.href = '?' + (src ? 'src=' + src + '&' : '') + 'lang=' + (ht ? 'en' : 'ht');
     if (src) {
       ['store', 'store-ht'].forEach(function (id) {
         var a = document.getElementById(id);
